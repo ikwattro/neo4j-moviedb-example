@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5f2ace845e877cd925508796cf9aaf1d",
+    "hash": "127a7a0d51230e05ed9f52f8a9061536",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -198,12 +198,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neoxygen/neo4j-neoclient.git",
-                "reference": "120f18d235773688b1164ae04c28270b0b5c936a"
+                "reference": "ab5430ca8f5d792f02cb6fe84012478785aa0768"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neoxygen/neo4j-neoclient/zipball/120f18d235773688b1164ae04c28270b0b5c936a",
-                "reference": "120f18d235773688b1164ae04c28270b0b5c936a",
+                "url": "https://api.github.com/repos/neoxygen/neo4j-neoclient/zipball/ab5430ca8f5d792f02cb6fe84012478785aa0768",
+                "reference": "ab5430ca8f5d792f02cb6fe84012478785aa0768",
                 "shasum": ""
             },
             "require": {
@@ -252,7 +252,7 @@
                 "http",
                 "neo4j"
             ],
-            "time": "2014-09-23 14:39:44"
+            "time": "2014-09-23 19:11:18"
         },
         {
             "name": "pimple/pimple",
