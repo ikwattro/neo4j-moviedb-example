@@ -1,0 +1,6 @@
+{% for actor in actors %}
+    <li>
+        <a href="{{ app.url_generator.generate('actor', {name: actor.properties.name}) }}" title="{{ actor.properties.name }}">
+            <img src="{{ app.request.basepath }}/assets/img/head.png"/> {{ actor.properties.name }}</a>
+    </li>
+{% endfor %}

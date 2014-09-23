@@ -1,0 +1,13 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<h1>
+{{ movie.properties.title }}
+</h1>
+    <ul>
+    <h2>Roles</h2>
+        {% for actor in actors %}
+            <li>{{ actor.properties.role }} (played by <b>{{ actor.startNode.properties.name }}</b>)</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

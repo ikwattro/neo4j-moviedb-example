@@ -1,0 +1,11 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>{{ actor.properties.name }}</h1>
+    <h3>PLAYED IN :</h3>
+    <ul>
+        {% for movie in actor.outboundRelationships %}
+            <li>{{ movie.endNode.properties.title }} (<b>as {{ movie.properties.role }}</b>)</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

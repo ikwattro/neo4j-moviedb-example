@@ -1,0 +1,6 @@
+{% for movie in movies %}
+    <li>
+        <a href="{{ app.url_generator.generate('movie', {title: movie.properties.title}) }}"
+           title="{{ movie.properties.title }}"><img src="{{ app.request.basepath }}/assets/img/play.png"/> {{ movie.properties.title }}</a>
+    </li>
+{% endfor %}

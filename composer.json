@@ -1,0 +1,19 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+        "neoxygen/neoclient": "~1.5@dev",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "symfony/twig-bridge": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NeoApp\\": "src/NeoApp"
+        }
+    },
+    "extra": {
+        "heroku": {
+            "document-root": "web",
+            "index-document": "index.php"
+        }
+    }
+}

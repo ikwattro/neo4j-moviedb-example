@@ -1,0 +1,42 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>Welcome to the NeoClient MovieApp</h1>
+
+    <section>
+        <img src="{{ app.request.basepath }}/assets/img/movieapp.png"/>
+    </section>
+
+    <section>
+        <h3>
+            Introduction
+        </h3>
+        <p>
+            This simple PHP app use <a href="https://github.com/neoxygen/neo4j-neoclient">NeoClient</a> together with
+            the Silex micro framework.
+        </p>
+
+        <p>The app is launched on Heroku with the GrapheneDB add-on. The graph database is provisioned with the
+        <a href="http://docs.neo4j.org/chunked/stable/cypherdoc-movie-database.html">MovieDB example</a> from Neo4j.</p>
+
+        <p>You can find all queries and also see how the result formatter makes our life easier to handle neo4j api
+            responses.
+        </p>
+    </section>
+
+    <section>
+        <h3>Play</h3>
+        <p>Choose in the menu an Actor or a Movie.</p>
+    </section>
+
+    <hr />
+    <footer>
+        <p>
+            Built with <3 by <a href="https://twitter.com/ikwattro" title="Christophe Willemsen">@ikwattro</a>
+        </p>
+
+        <p>
+            Source code available on Github : <a href="https://github.com/ikwattro/neo4j-moviedb-example">https://github.com/ikwattro/neo4j-moviedb-example</a>
+        </p>
+    </footer>
+{% endblock %}

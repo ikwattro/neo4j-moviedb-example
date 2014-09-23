@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeoClient | MovieApp</title>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/foundation.css" />
+    <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/app.css" />
+    <link rel="icon" href="{{ app.request.basepath }}/favicon.ico" />
+    <script src="{{ app.request.basepath }}/assets/js/vendor/modernizr.js"></script>
+    <script src="{{ app.request.basepath }}/assets/js/foundation.min.js"></script>
+</head>
+<body>
+
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+    <div class="inner-wrap">
+        <nav class="tab-bar">
+            <section class="left-small">
+                <a class="left-off-canvas-toggle menu-icon" aria-expanded="false"><span></span></a>
+            </section>
+
+            <section class="right tab-bar-section">
+                <h1 class="title"><img src="{{ app.request.basepath }}/assets/img/matrix_ss_icon.png"/> NeoClient MovieApp</h1>
+            </section>
+
+        </nav>
+
+        <aside class="left-off-canvas-menu">
+            <ul class="off-canvas-list">
+                <li><a href="{{ app.url_generator.generate('homepage') }}">Homepage</a></li>
+                <li><label>Actors</label></li>
+                {{ render(url('actors_list_menu')) }}
+                <li><label>Movies</label></li>
+                {{ render(url('movies_list_menu')) }}
+            </ul>
+        </aside>
+
+        <section class="main-section">
+            <div class="row">
+                <div class="large-12 columns maincontent">
+                    <br>
+
+                    {% block content %} {% endblock %}
+
+                </div>
+            </div>
+        </section>
+
+        <a class="exit-off-canvas"></a>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ app.request.basepath }}/assets/js/foundation/foundation.js"></script>
+<script src="{{ app.request.basepath }}/assets/js/foundation/foundation.offcanvas.js"></script>
+<!-- Other JS plugins can be included here -->
+{% block js %} {% endblock %}
+
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
