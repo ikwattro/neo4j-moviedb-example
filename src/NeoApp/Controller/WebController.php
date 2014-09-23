@@ -102,7 +102,10 @@ class WebController
 
     public function importDB(Request $request, Application $application)
     {
-        $client = $app['client'];
+        $client = $application['client'];
+
+        $this->resetDB($client);
+
         $q = "CREATE (matrix1:Movie { title : 'The Matrix', year : '1999-03-31' })
 CREATE (matrix2:Movie { title : 'The Matrix Reloaded', year : '2003-05-07' })
 CREATE (matrix3:Movie { title : 'The Matrix Revolutions', year : '2003-10-27' })
@@ -129,5 +132,12 @@ CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix3)";
         $application->abort('500', 'Impossible to import DB');
 
 
+    }
+
+    private function resetDB($client)
+    {
+        $q = 'MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE r,n';
+
+        $client->sendCypherQuery($q);
     }
 }
