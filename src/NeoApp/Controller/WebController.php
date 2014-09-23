@@ -29,10 +29,6 @@ class WebController
         $response = $client->sendCypherQuery($q, $p, null, array('graph'));
         $result = $formatter->format($response);
 
-        if ($result->hasErrors()) {
-            $application->abort('404', 'Actor not found');
-        }
-
         $actors = $result->getNodesByLabel('Actor');
         $actors = array_shift($actors);
 
@@ -55,10 +51,6 @@ class WebController
 
         $response = $client->sendCypherQuery($q, $p, null, array('graph'));
         $result = $formatter->format($response);
-
-        if ($result->hasErrors()) {
-            $application->abort('404', 'Movie not found');
-        }
 
         $movies = $result->getNodesByLabel('Movie');
         $movie = array_shift($movies);
