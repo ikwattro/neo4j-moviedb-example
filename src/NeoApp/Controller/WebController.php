@@ -102,7 +102,7 @@ class WebController
 
     public function importDB(Request $request, Application $application)
     {
-        $client = $application['client'];
+        $client = $application['neo'];
 
         $this->resetDB($client);
 
