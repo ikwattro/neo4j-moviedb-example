@@ -29,6 +29,10 @@ class WebController
         $response = $client->sendCypherQuery($q, $p, null, array('graph'));
         $result = $formatter->format($response);
 
+        if ($result->hasErrors()) {
+            $application->abort('404', 'Actor not found');
+        }
+
         $actors = $result->getNodesByLabel('Actor');
         $actors = array_shift($actors);
 
@@ -51,6 +55,10 @@ class WebController
 
         $response = $client->sendCypherQuery($q, $p, null, array('graph'));
         $result = $formatter->format($response);
+
+        if ($result->hasErrors()) {
+            $application->abort('404', 'Movie not found');
+        }
 
         $movies = $result->getNodesByLabel('Movie');
         $movie = array_shift($movies);
@@ -92,7 +100,7 @@ class WebController
         ));
     }
 
-    public function initDb(Request $request, Application $application)
+    public function importDB(Request $request, Application $application)
     {
         $client = $app['client'];
         $q = "CREATE (matrix1:Movie { title : 'The Matrix', year : '1999-03-31' })
@@ -111,8 +119,15 @@ CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix1)
 CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix2)
 CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix3)";
 
-        $client->sendCypherQuery($q);
+        $response = $client->sendCypherQuery($q);
+        $result = json_decode($response, true);
 
-        return $application->redirect('/');
+        if (empty($result['errors'])) {
+            return $application->redirect('/');
+        }
+
+        $application->abort('500', 'Impossible to import DB');
+
+
     }
 }

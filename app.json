@@ -10,7 +10,7 @@
     ],
     "website": "https://github.com/neoxygen",
     "repository": "https://github.com/ikwattro/neo4j-moviedb-example",
-    "success_url": "/",
+    "success_url": "/importdb",
     "env": {
         "BUILDPACK_URL": "https://github.com/CHH/heroku-buildpack-php"
     },

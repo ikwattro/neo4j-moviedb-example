@@ -34,5 +34,6 @@ $app->get('/movie/{title}', 'NeoApp\\Controller\\WebController::getMovie')
     ->bind('movie');
 $app->get('/menu_movies', 'NeoApp\\Controller\\WebController::moviesListMenu')
     ->bind('movies_list_menu');
+$app->get('/importdb', 'NeoApp\\Controller\\WebController::importDB');
 
 $app->run();
