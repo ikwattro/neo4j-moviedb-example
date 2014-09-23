@@ -1,6 +1,6 @@
 # NeoClient MovieDB Example
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy) | 1 dyno + 1 GrapheneDB chalk addon (all-free)
 
 [Live App Here](http://neo4j-neoclient-moviedb.herokuapp.com/)
 
@@ -8,9 +8,9 @@
 
 Simple Silex App using [NeoClient](https://github.com/neoxygen/neo4j-neoclient).
 
-This show how easy it is to use the lib and the response Formatter.
+The source code show how easy it is to set up the library and use it. It show also how handy is the response Formatter.
 
-Handling queries response from the ReST API is now funny :
+Handling queries responses from the ReST API is now funny :
 
 In your controllers
 
@@ -28,10 +28,10 @@ In the Twig template engine
 
 ```twig
 {% for act in actor.outboundRelationships %}
-    <li>In movie {{ act.endNode.properties.title }} as role {{ act.role }}
+    <li>In movie {{ act.endNode.properties.title }} as role {{ act.role }}</li>
 {% endfor %}
 ```
 
 ---
 
-Author : Christophe Willemsen ([@ikwattro](https://twitter.com/ikwattro)
+Author : Christophe Willemsen ([@ikwattro](https://twitter.com/ikwattro))
