@@ -8,7 +8,7 @@ require_once './../vendor/autoload.php';
  */
 $url = parse_url(getenv('GRAPHENEDB_URL'));
 $client = new Neoxygen\NeoClient\Client();
-$client->addConnection('default', $url['scheme'], $url['host'], $url['port'], true, $url['user'], $url['password'])
+$client->addConnection('default', $url['scheme'], $url['host'], $url['port'], true, $url['user'], $url['pass'])
     ->build();
 $formatter = new Neoxygen\NeoClient\Formatter\ResponseFormatter();
 
