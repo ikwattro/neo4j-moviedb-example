@@ -1,7 +1,7 @@
 {
     "require": {
         "silex/silex": "~1.1",
-        "neoxygen/neoclient": "~1.5@dev",
+        "neoxygen/neoclient": "~2.1",
         "twig/twig": ">=1.8,<2.0-dev",
         "symfony/twig-bridge": "~2.3"
     },
