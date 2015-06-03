@@ -4,33 +4,36 @@
 
 [Live App Here](http://neo4j-neoclient-moviedb.herokuapp.com/)
 
-## Intro
+### Intro
 
 Simple Silex App using [NeoClient](https://github.com/neoxygen/neo4j-neoclient).
 
-The source code show how easy it is to set up the library and use it. It show also how handy is the response Formatter.
+### Test it locally :
 
-Handling queries responses from the ReST API is now funny :
+1. Clone the repository and install dependencies
 
-In your controllers
+```bash
+git clone git@github.com:ikwattro/neo4j-moviedb-example
+cd neo4j-moviedb-example
 
-```php
-$result = $formatter->format($response);
-
-$result->getNodes();
-
-$result->getNodesByLabel('Actor');
-
-$result->getInboundRelationships();
+composer install --no-dev
 ```
 
-In the Twig template engine
+2. Modify the neo4j password defined in the `index.php` file line `15` by your neo4j database password
 
-```twig
-{% for act in actor.outboundRelationships %}
-    <li>In movie {{ act.endNode.properties.title }} as role {{ act.role }}</li>
-{% endfor %}
+3. Run a webserver
+
+```bash
+php -S localhost:8000 -t web/
 ```
+
+4. Head to the url `http://localhost:8000/importdb` in order to load the movies and actors in your database
+
+!!!! This will erase your database content
+
+If you don't want to erase, comment the line number `91` of the file `src/NeoApp/WebController.php`
+
+5. After this, you should be headed to the application index page
 
 ---
 
