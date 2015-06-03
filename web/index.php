@@ -2,15 +2,25 @@
 
 require_once './../vendor/autoload.php';
 
+use Neoxygen\NeoClient\ClientBuilder;
 
 /**
  * Neo4j Connection building
  */
-$url = parse_url(getenv('GRAPHENEDB_URL'));
-$client = new Neoxygen\NeoClient\Client();
-$client->addConnection('default', $url['scheme'], $url['host'], $url['port'], true, $url['user'], $url['pass'])
+$url = array(
+    'scheme' => 'http',
+    'host' => 'localhost',
+    'port' => 7474,
+    'user' => 'neo4j',
+    'password' => 'neo4j'
+);
+if (false !== getenv('GRAPHENEDB_URL' || false !== 'GRAPHSTORY_URL')) {
+    $url = parse_url('http://neo4j:error@localhost:7676');
+}
+$client = ClientBuilder::create()
+    ->addConnection('default', $url['scheme'], $url['host'], $url['port'], true, $url['user'], $url['pass'])
+    ->setAutoFormatResponse(true)
     ->build();
-$formatter = new Neoxygen\NeoClient\Formatter\ResponseFormatter();
 
 /**
  * Silex bootstrap
@@ -18,7 +28,6 @@ $formatter = new Neoxygen\NeoClient\Formatter\ResponseFormatter();
 $app = new Silex\Application();
 $app['debug'] = true;
 $app['neo'] = $client;
-$app['formatter'] = $formatter;
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../src/views',
 ));

@@ -17,7 +17,6 @@ class WebController
     public function getActor($name, Request $request, Application $application)
     {
         $client = $application['neo'];
-        $formatter = $application['formatter'];
 
         $q = 'MATCH p=(a:Actor { name: {props}.name })-[:ACTS_IN]-() RETURN p';
         $p = array(
@@ -26,13 +25,10 @@ class WebController
             )
         );
 
-        $response = $client->sendCypherQuery($q, $p, null, array('graph'));
-        $result = $formatter->format($response);
+        $result = $client->sendCypherQuery($q, $p)->getResult();
 
         $actors = $result->getNodesByLabel('Actor');
         $actors = array_shift($actors);
-
-
 
         return $application['twig']->render('actorShow.twig', array(
             'actor' => $actors
@@ -42,15 +38,13 @@ class WebController
     public function getMovie($title, Request $request, Application $application)
     {
         $client = $application['neo'];
-        $formatter = $application['formatter'];
 
         $q = 'MATCH p=(m:Movie {title: {props}.title })-[:ACTS_IN]-() RETURN p';
         $p = array('props' => array(
             'title' => $title
         ));
 
-        $response = $client->sendCypherQuery($q, $p, null, array('graph'));
-        $result = $formatter->format($response);
+        $result = $client->sendCypherQuery($q, $p)->getResult();
 
         $movies = $result->getNodesByLabel('Movie');
         $movie = array_shift($movies);
@@ -67,10 +61,9 @@ class WebController
     {
         $client = $app['neo'];
         $query = 'MATCH (n:Actor) RETURN n';
-        $response = $client->sendCypherQuery($query, array(), null, array('graph'));
-        $result = $app['formatter']->format($response);
+        $result = $client->sendCypherQuery($query, array())->getResult();
 
-        $actors = $result->getNodesByLabel('Actor');
+        $actors = $result->get('n');
 
         return $app['twig']->render('menu_actors.twig', array(
             'actors' => $actors
@@ -82,10 +75,9 @@ class WebController
         $client = $application['neo'];
         $query = 'MATCH (m:Movie) RETURN m';
 
-        $response = $client->sendCypherQuery($query, array(), null, array('graph'));
-        $result = $application['formatter']->format($response);
+        $result = $client->sendCypherQuery($query)->getResult();
 
-        $movies = $result->getNodesByLabel('Movie');
+        $movies = $result->get('m');
 
         return $application['twig']->render('menu_movies.twig', array(
             'movies' => $movies
@@ -114,14 +106,9 @@ CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix1)
 CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix2)
 CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix3)";
 
-        $response = $client->sendCypherQuery($q);
-        $result = json_decode($response, true);
+        $client->sendCypherQuery($q);
 
-        if (empty($result['errors'])) {
-            return $application->redirect('/');
-        }
-
-        $application->abort('500', 'Impossible to import DB');
+        return $application->redirect('/');
 
 
     }
